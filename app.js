@@ -1,9 +1,10 @@
 const express = require("express");
 const app = express();
-const mongo = require("mongodb");
-const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
+
+// Body parser
+app.use(express.urlencoded({ extended: true }));
 
 // Cors used for FCC testing purposes
 app.use(cors({ optionSuccessStatus: 200 }));
@@ -14,6 +15,25 @@ app.use(express.static("public"));
 // Main route defined
 app.get("/", (req, res) => res.sendFile(`${__dirname}/views/index.html`));
 
+//For FCC testing purposes
+fccTestingRoutes(app);
+
+//Routing for API
+apiRoutes(app);
+
 // Server listening
 const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Server running at port ` + port));
+app.listen(port, () => {
+  console.log(`Server running at port ` + port);
+  if (process.env.NODE_ENV === "test") {
+    console.log("Running Tests...");
+    setTimeout(() => {
+      try {
+        runner.run();
+      } catch (err) {
+        console.log("Tests are not valid:");
+        console.log(err);
+      }
+    }, 1500);
+  }
+});
