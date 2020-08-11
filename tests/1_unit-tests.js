@@ -1,11 +1,3 @@
-/*
- *
- *
- *       FILL IN EACH UNIT TEST BELOW COMPLETELY
- *       -----[Keep the tests in the same order!]----
- *       (if additional are added, keep them at the very end!)
- */
-
 var chai = require("chai");
 var assert = chai.assert;
 var ConvertHandler = require("../controllers/convertHandler.js");
@@ -15,29 +7,39 @@ var convertHandler = new ConvertHandler();
 suite("Unit Tests", function () {
   suite("Function convertHandler.getNum(input)", function () {
     test("Whole number input", function (done) {
-      var input = "32L";
+      let input = "32L";
       assert.equal(convertHandler.getNum(input), 32);
       done();
     });
 
     test("Decimal Input", function (done) {
-      // done();
+      let input = "45.23km";
+      assert.equal(convertHandler.getNum(input), 45.23);
+      done();
     });
 
     test("Fractional Input", function (done) {
-      //done();
+      let input = "1/2km";
+      assert.equal(convertHandler.getNum(input), 0.5);
+      done();
     });
 
     test("Fractional Input w/ Decimal", function (done) {
-      //done();
+      let input = "4.3/2.15km";
+      assert.equal(convertHandler.getNum(input), 2);
+      done();
     });
 
     test("Invalid Input (double fraction)", function (done) {
-      //done();
+      let input = "4/2/2km";
+      assert.equal(convertHandler.getNum(input), "invalid number");
+      done();
     });
 
     test("No Numerical Input", function (done) {
-      //done();
+      let input = "%";
+      assert.equal(convertHandler.getNum(input), "invalid number");
+      done();
     });
   });
 
