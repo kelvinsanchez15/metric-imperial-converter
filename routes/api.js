@@ -6,12 +6,17 @@ module.exports = function (app) {
 
   app.route("/api/convert").get((req, res) => {
     const input = req.query.input;
+
     const initNum = convertHandler.getNum(input);
-    if (initNum === "invalid number") res.json({ string: initNum });
+    if (initNum === "invalid number") return res.json({ string: initNum });
+
     const initUnit = convertHandler.getUnit(input);
-    if (initUnit === "invalid unit") res.json({ string: initUnit });
+    if (initUnit === "invalid unit") return res.json({ string: initUnit });
+
     const returnNum = convertHandler.convert(initNum, initUnit);
+
     const returnUnit = convertHandler.getReturnUnit(initUnit);
+
     const toString = convertHandler.getString(
       initNum,
       initUnit,

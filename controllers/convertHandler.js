@@ -1,24 +1,24 @@
 const { init } = require("../app");
 
 const unitsObj = {
-  gal: { name: "gallons", symbol: "gal", factor: 3.78541, to: "L" },
-  L: { name: "liters", symbol: "L", factor: 0.26417, to: "gal" },
+  gal: { name: "gallons", symbol: "gal", factor: 3.78541, to: "l" },
+  l: { name: "liters", symbol: "l", factor: 0.26417, to: "gal" },
   mi: { name: "miles", symbol: "mi", factor: 1.60934, to: "km" },
   km: { name: "kilometers", symbol: "km", factor: 0.62137, to: "mi" },
   lbs: { name: "pounds", symbol: "lbs", factor: 0.453592, to: "kg" },
-  kg: { name: "gallons", symbol: "kg", factor: 2.20462, to: "lbs" },
+  kg: { name: "kilograms", symbol: "kg", factor: 2.20462, to: "lbs" },
 };
 
 class ConvertHandler {
   getNum(input) {
     let index = input.search(/[a-zA-Z]/);
 
-    // Handle empty number
+    // Handle empty number with defaul
     if (index <= 0) return 1;
 
     input = input.substring(index, 0);
 
-    // Split and divide
+    // Split and divide in case of fractional number
     if (input.match(/\//g)) {
       if (input.match(/\//g).length > 1) return "invalid number";
       let split = input.split("/");
@@ -32,9 +32,12 @@ class ConvertHandler {
   }
 
   getUnit(input) {
-    let unit = input.match(/[a-zA-Z]+/g)[0];
-    if (!unitsObj.hasOwnProperty(unit)) return "invalid unit";
-    return unit;
+    let unit = input.match(/[a-zA-Z]+/g);
+
+    if (!unit || !unitsObj.hasOwnProperty(unit[0].toLowerCase()))
+      return "invalid unit";
+
+    return unit[0].toLowerCase();
   }
 
   getReturnUnit(initUnit) {
