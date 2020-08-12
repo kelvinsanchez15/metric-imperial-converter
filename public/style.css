@@ -1,0 +1,71 @@
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  color: #222;
+  background-color: #fafafa;
+  line-height: 1.4em;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  background-image: linear-gradient(135deg, #81fbb8 10%, #28c76f 100%);
+}
+
+.container {
+  background-color: #dedede;
+  border-radius: 10px;
+  padding: 1em 2em;
+  max-width: 700px;
+  margin: 1em;
+}
+
+h1 {
+  text-align: center;
+}
+
+h3 {
+  margin-top: 30px;
+}
+
+.footer {
+  margin-top: 40px;
+}
+
+code {
+  font-size: 90%;
+  color: #e83e8c;
+  word-wrap: break-word;
+}
+
+pre {
+  font-size: 90%;
+  color: #e83e8c;
+  white-space: pre-wrap;
+}
+
+#jsonResult {
+  font-size: 87.5%;
+  color: #e83e8c;
+  white-space: pre-wrap;
+  width: 100px;
+}
+
+li {
+  margin-bottom: 0.5em;
+}
+
+form {
+  border: solid 1px black;
+  border-radius: 5px;
+  margin: 10px auto;
+  padding: 20px;
+  height: 4.3em;
+  max-width: 550px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input {
+  padding: 5px;
+  text-align: center;
+}
