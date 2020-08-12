@@ -30,7 +30,7 @@ suite("Functional Tests", () => {
           .query({ input: "32g" })
           .end((err, res) => {
             assert.equal(res.status, 200);
-            assert.equal(res.body.string, "invalid unit");
+            assert.equal(res.body.error, "invalid unit");
             done();
           });
       });
@@ -42,7 +42,7 @@ suite("Functional Tests", () => {
           .query({ input: "3/7.2/4kg" })
           .end((err, res) => {
             assert.equal(res.status, 200);
-            assert.equal(res.body.string, "invalid number");
+            assert.equal(res.body.error, "invalid number");
             done();
           });
       });
@@ -54,7 +54,7 @@ suite("Functional Tests", () => {
           .query({ input: "3/7.2/4kilomegagram" })
           .end((err, res) => {
             assert.equal(res.status, 200);
-            assert.equal(res.body.string, "invalid number and unit");
+            assert.equal(res.body.error, "invalid number and unit");
             done();
           });
       });

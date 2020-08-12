@@ -10,10 +10,10 @@ module.exports = function (app) {
     const initNum = convertHandler.getNum(input);
     const initUnit = convertHandler.getUnit(input);
     if (initNum === "invalid number" && initUnit === "invalid unit")
-      return res.json({ string: "invalid number and unit" });
+      return res.json({ error: "invalid number and unit" });
 
-    if (initNum === "invalid number") return res.json({ string: initNum });
-    if (initUnit === "invalid unit") return res.json({ string: initUnit });
+    if (initNum === "invalid number") return res.json({ error: initNum });
+    if (initUnit === "invalid unit") return res.json({ error: initUnit });
 
     const returnNum = convertHandler.convert(initNum, initUnit);
 
