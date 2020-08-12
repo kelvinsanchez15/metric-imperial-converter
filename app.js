@@ -4,8 +4,8 @@ const cors = require("cors");
 require("dotenv").config();
 const helmet = require("helmet");
 
-// Prevent sniff and XSS attacks
-app.use(helmet());
+// Prevent sniff and XSS attacks. PD: CSP disable to avoid inline script error
+app.use(helmet({ contentSecurityPolicy: false }));
 
 // Routes
 const apiRoutes = require("./routes/api.js");
