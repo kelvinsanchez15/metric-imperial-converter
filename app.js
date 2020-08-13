@@ -1,15 +1,14 @@
 const express = require("express");
 const app = express();
+const helmet = require("helmet");
 const cors = require("cors");
 require("dotenv").config();
-const helmet = require("helmet");
 
 // Prevent sniff and XSS attacks. PD: CSP disable to avoid inline script error
 app.use(helmet({ contentSecurityPolicy: false }));
 
 // Routes
 const apiRoutes = require("./routes/api.js");
-const fccTestingRoutes = require("./routes/fcctesting.js");
 
 // Test runner
 const runner = require("./test-runner");
@@ -25,9 +24,6 @@ app.use(express.static("public"));
 
 // Main route defined
 app.get("/", (req, res) => res.sendFile(`${__dirname}/views/index.html`));
-
-//For FCC testing purposes
-fccTestingRoutes(app);
 
 //Routing for API
 apiRoutes(app);
